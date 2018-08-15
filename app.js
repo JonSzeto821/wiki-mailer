@@ -55,6 +55,9 @@ request('https://en.wikipedia.org/wiki/Frenkie_de_Jong', function(err, resp, htm
       }
 });
 
+//dotenv
+require('dotenv').config()
+
 //nodemailer
 // 'use strict';
 const nodemailer = require('nodemailer');
@@ -70,7 +73,7 @@ nodemailer.createTestAccount((err, account) => {
         // secure: false, // true for 465, false for other ports
         auth: {
             user: 'wikiapptest1@gmail.com', //account.user, // generated ethereal user
-            pass: 'WikiPass' // generated ethereal password
+            pass: '' // generated ethereal password
         }
     });
 
