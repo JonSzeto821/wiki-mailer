@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 require('dotenv').config()
 console.log(process.env.Password);
+console.log(process.env.Email);
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -55,9 +56,6 @@ request('https://en.wikipedia.org/wiki/Frenkie_de_Jong', function(err, resp, htm
       }
 });
 
-//dotenv
-require('dotenv').config()
-
 //nodemailer
 // 'use strict';
 const nodemailer = require('nodemailer');
@@ -72,8 +70,8 @@ nodemailer.createTestAccount((err, account) => {
         // port: 587,
         // secure: false, // true for 465, false for other ports
         auth: {
-            user: 'wikiapptest1@gmail.com', //account.user, // generated ethereal user
-            pass: '' // generated ethereal password
+            user: process.env.Email, //account.user
+            pass: process.env.Password
         }
     });
 
@@ -83,7 +81,7 @@ nodemailer.createTestAccount((err, account) => {
         to: '<wikiapptest1@gmail.com>', // list of receivers
         subject: 'NodeMailer - Wikipedia', // Subject line
         text: 'Hello world? plain text', // plain text body
-        html: '<b>NodeMailer is delivering Wiki content</b>' // html body
+        html: '<b>Password coming from .env</b>' // html body
     };
 
     // send mail with defined transport object
