@@ -8,13 +8,19 @@
   "dependencies": {
     "body-parser": "~1.18.2",
     "cheerio": "^1.0.0-rc.2",
+    "connected-react-router": "^4.4.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "dotenv": "^6.0.0",
     "express": "~4.15.5",
     "hbs": "~4.0.1",
+    "history": "^4.7.2",
     "morgan": "~1.9.0",
     "nodemailer": "^4.6.8",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
     "request": "^2.88.0",
     "serve-favicon": "~2.4.5"
   }

@@ -5,11 +5,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 require('dotenv').config()
-console.log(process.env.Password);
-console.log(process.env.Email);
+// console.log(process.env.Password);
+// console.log(process.env.Email);
+// console.log(process.env.SYS_Email);
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var emails = require('./routes/emails');
 
 var app = express();
 
@@ -27,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/emails', emails);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -77,9 +80,9 @@ nodemailer.createTestAccount((err, account) => {
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: '"Fred Foo 👻" <jonszeto821@gmail.com>', // sender address
-        to: '<wikiapptest1@gmail.com>', // list of receivers
-        subject: 'NodeMailer - Wikipedia', // Subject line
+        from: `"WikiMailer Delivery System 👻" <${process.env.SYS_Email}>`, // sender address
+        to: '<wikiapptest1@gmail.com>', // list of receivers //insert a variable to pull email from db
+        subject: 'NodeMailer - Wikipedia (Topic_variable)', // Subject line
         text: 'Hello world? plain text', // plain text body
         html: '<b>Password coming from .env</b>' // html body
     };
@@ -87,7 +90,7 @@ nodemailer.createTestAccount((err, account) => {
     // send mail with defined transport object
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            return console.log(error);
+            return console.log('error', error);
         }
         console.log('Message sent: %s', info.messageId);
         // Preview only available when sending through an Ethereal account
